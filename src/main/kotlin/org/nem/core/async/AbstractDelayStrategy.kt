@@ -27,9 +27,7 @@ abstract class AbstractDelayStrategy {
 
      * @return true if the recurring operation should be stopped.
      */
-    open fun shouldStop(): Boolean {
-        return null != this.maxDelays && this.maxDelays <= this.numDelays
-    }
+    open fun shouldStop(): Boolean = null != this.maxDelays && this.maxDelays <= this.numDelays
 
     /**
      * Gets the next delay (in milliseconds).

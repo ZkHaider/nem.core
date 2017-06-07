@@ -27,8 +27,6 @@ class UniformDelayStrategy: AbstractDelayStrategy {
         this.delay = delay
     }
 
-    override fun nextInternal(iteration: Int): Int {
-        return this.delay
-    }
+    override fun nextInternal(iteration: Int): Int = this.delay
 }
 

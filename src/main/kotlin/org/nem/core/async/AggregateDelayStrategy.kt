@@ -23,9 +23,7 @@ class AggregateDelayStrategy(private val strategies: List<AbstractDelayStrategy>
         return true
     }
 
-    override fun nextInternal(iteration: Int): Int {
-        return this.current.next()
-    }
+    override fun nextInternal(iteration: Int): Int = this.current.next()
 
     private val current: AbstractDelayStrategy
         get() = this.strategies[this.strategyIndex]

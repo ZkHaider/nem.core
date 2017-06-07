@@ -29,8 +29,6 @@ class VariableDelayStrategy : AbstractDelayStrategy {
         this.delaySupplier = delaySupplier
     }
 
-    override fun nextInternal(iteration: Int): Int {
-        return this.delaySupplier.get()
-    }
+    override fun nextInternal(iteration: Int): Int = this.delaySupplier.get()
 }
 

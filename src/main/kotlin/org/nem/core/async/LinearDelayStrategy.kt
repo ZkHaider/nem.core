@@ -18,9 +18,7 @@ class LinearDelayStrategy(private val minDelay: Int, maxDelay: Int, iterations: 
         this.delayStep = (maxDelay - minDelay).toFloat() / (iterations - 1)
     }
 
-    override fun nextInternal(iteration: Int): Int {
-        return this.minDelay + (this.delayStep * (iteration - 1)).toInt()
-    }
+    override fun nextInternal(iteration: Int): Int = this.minDelay + (this.delayStep * (iteration - 1)).toInt()
 
     companion object {
 
