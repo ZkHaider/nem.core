@@ -13,7 +13,7 @@ public class SleepFutureTest {
 	@Test
 	public void sleepFutureIsInitiallyNotCompleted() throws InterruptedException {
 		// Arrange:
-		final CompletableFuture<?> future = SleepFuture.create(TIME_UNIT);
+		final CompletableFuture<?> future = SleepFuture.INSTANCE.create(TIME_UNIT);
 
 		// Assert:
 		Assert.assertThat(future.isDone(), IsEqual.equalTo(false));
@@ -22,7 +22,7 @@ public class SleepFutureTest {
 	@Test
 	public void sleepFutureIsCompletedAfterDelay() throws InterruptedException {
 		// Arrange:
-		final CompletableFuture<?> future = SleepFuture.create(TIME_UNIT);
+		final CompletableFuture<?> future = SleepFuture.INSTANCE.create(TIME_UNIT);
 
 		Thread.sleep(TIME_UNIT + DELTA);
 
@@ -35,7 +35,7 @@ public class SleepFutureTest {
 		// Arrange:
 		final CompletableFuture<?>[] futures = new CompletableFuture[100];
 		for (int i = 0; i < futures.length; ++i) {
-			futures[i] = SleepFuture.create(TIME_UNIT);
+			futures[i] = SleepFuture.INSTANCE.create(TIME_UNIT);
 		}
 
 		Thread.sleep(TIME_UNIT + DELTA);
@@ -49,8 +49,8 @@ public class SleepFutureTest {
 	@Test
 	public void sleepFuturesOfDifferentDurationsAreExecutedConcurrently() throws InterruptedException {
 		// Arrange:
-		final CompletableFuture future1 = SleepFuture.create(TIME_UNIT);
-		final CompletableFuture future5 = SleepFuture.create(TIME_UNIT * 5);
+		final CompletableFuture future1 = SleepFuture.INSTANCE.create(TIME_UNIT);
+		final CompletableFuture future5 = SleepFuture.INSTANCE.create(TIME_UNIT * 5);
 
 		Thread.sleep(TIME_UNIT + DELTA);
 

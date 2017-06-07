@@ -69,7 +69,7 @@ public class AsyncTimerOptionsBuilderTest {
 	public void canSetInitialDelayAsTrigger() throws InterruptedException {
 		// Act:
 		final AsyncTimerOptions options = new AsyncTimerOptionsBuilder()
-				.setTrigger(SleepFuture.create(TIME_UNIT))
+				.setTrigger(SleepFuture.INSTANCE.create(TIME_UNIT))
 				.create();
 
 		// Assert:

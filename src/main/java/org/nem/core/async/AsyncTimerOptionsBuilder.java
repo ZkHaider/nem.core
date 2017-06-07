@@ -104,7 +104,7 @@ public class AsyncTimerOptionsBuilder {
 
 		private CompletableFuture<?> delay(final int milliseconds) {
 			this.visitor.notifyDelay(milliseconds);
-			return SleepFuture.create(milliseconds);
+			return SleepFuture.INSTANCE.create(milliseconds);
 		}
 
 		@Override

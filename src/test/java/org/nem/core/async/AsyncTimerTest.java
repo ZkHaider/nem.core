@@ -212,19 +212,19 @@ public class AsyncTimerTest {
 	private static void assertFirstFireFutureIsSet(final CountableFuture cf) throws InterruptedException {
 		try (final AsyncTimer timer = createTimer(cf, TIME_UNIT, 2 * TIME_UNIT)) {
 			// Assert: initially unset
-			Assert.assertThat(timer.getFirstFireFuture().isDone(), IsEqual.equalTo(false));
+			Assert.assertThat(timer.getFirstRecurrenceFuture().isDone(), IsEqual.equalTo(false));
 
 			// Arrange: (should fire at 1)
 			Thread.sleep(2 * TIME_UNIT);
 
 			// Assert: the future should be set after the initial fire
-			Assert.assertThat(timer.getFirstFireFuture().isDone(), IsEqual.equalTo(true));
+			Assert.assertThat(timer.getFirstRecurrenceFuture().isDone(), IsEqual.equalTo(true));
 
 			// Arrange: (should fire at 3)
 			Thread.sleep(2 * TIME_UNIT);
 
 			// Assert: the future should be set after subsequent fires
-			Assert.assertThat(timer.getFirstFireFuture().isDone(), IsEqual.equalTo(true));
+			Assert.assertThat(timer.getFirstRecurrenceFuture().isDone(), IsEqual.equalTo(true));
 		}
 	}
 
@@ -366,7 +366,7 @@ public class AsyncTimerTest {
 			final AsyncTimerVisitor visitor) {
 		final AsyncTimerOptions options = new AsyncTimerOptionsBuilder()
 				.setRecurringFutureSupplier(cf.getFutureSupplier())
-				.setTrigger(triggerTimer.getFirstFireFuture())
+				.setTrigger(triggerTimer.getFirstRecurrenceFuture())
 				.setDelayStrategy(new UniformDelayStrategy(delay))
 				.setVisitor(visitor)
 				.create();

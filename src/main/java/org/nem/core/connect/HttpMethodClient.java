@@ -120,7 +120,7 @@ public class HttpMethodClient<T> implements Closeable {
 			final CompletableFuture<T> responseFuture = callback.getFuture()
 					.thenApply(response -> responseStrategy.coerce(request, response));
 
-			SleepFuture.create(this.requestTimeout).thenAccept(v -> {
+			SleepFuture.INSTANCE.create(this.requestTimeout).thenAccept(v -> {
 				if (responseFuture.isDone()) {
 					return;
 				}
